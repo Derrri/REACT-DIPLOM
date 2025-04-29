@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import HomeWrapper from "./components/Client/HomeWrapper";
 import Home from "./components/Client/Home";
 import Hall from "./components/Client/Hall-hall_components/Hall";
