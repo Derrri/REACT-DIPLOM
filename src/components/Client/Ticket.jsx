@@ -15,7 +15,7 @@ const Ticket = () => {
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "/QRCreator.js";
+    script.src = "./QRCreator.js";
     script.async = true;
     script.onload = () => {
       console.log("js файл подгрузился");
