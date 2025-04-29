@@ -1,0 +1,47 @@
+.popup::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.popup__hidden {
+  display: none;
+}
+
+
+
+.popup__header {
+  background-color: #63536C;
+  padding: 16px 42px 14px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.popup__header_text {
+  color: #FFFFFF;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.popup__close {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 16px;
+  right: 42px;
+  cursor: pointer;
+}
+
+.popup__button_cancel {
+  padding: 12px 32px;
+  color: #63536C;
+  background-color: #FFFFFF;
+  width: 200px;
+}

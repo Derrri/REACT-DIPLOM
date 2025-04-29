@@ -1,0 +1,50 @@
+.halls__list {
+    list-style-type: none;    
+    margin-top: 14px;
+    margin-bottom: 22px;
+    padding-left: 25px;
+  }
+  
+  .halls__list_item {
+    font-size: 16px; 
+    font-weight: 500; 
+    line-height: 18px; 
+    text-transform: uppercase;  
+    position: relative; 
+    display: flex;
+  }
+  
+  .halls__list_item::before {
+    content: "–";
+    position: absolute;
+    left: -14px;
+  }
+  
+  .halls__list_item:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  
+  .admin__button_remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    margin-left: 4px;  
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;  
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.12), 0px 3px 3px 0px rgba(0, 0, 0, 0.24);
+    cursor: pointer;   
+  }
+  
+  .admin__button_remove::before {
+    content: "";
+    background: url(../../../../assets/bin.png);
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: auto 12px;
+  }
+  

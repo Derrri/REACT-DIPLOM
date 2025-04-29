@@ -1,0 +1,104 @@
+.payment__header {
+  position: relative;
+  padding: 30px 15px;
+  width: 100%;
+  background: rgba(241, 235, 230, 0.95);
+}
+
+.payment__header::before {
+  content: "";
+  display: block;
+  height: 3px;
+  position: absolute;
+  background-image: url(../../assets/ticket-before.png);
+  top: -2px;
+  left: 0;
+  right: 0;
+}
+
+.payment__header::after {
+  content: "";
+  display: block;
+  height: 3px;
+  position: absolute;
+  background-image: url(../../assets/ticket-after.png);
+  bottom: -2px;
+  left: 0;
+  right: 0;
+}
+
+.payment__header-text {
+  font-size: 22px;
+  color: #c76f00;
+  font-weight: 700;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.ticket__info-wrapper {
+  position: relative;
+  padding: 19px 30px 15px;
+  margin-top: 4px;
+  width: 100%;
+  background: rgba(241, 235, 230, 0.95);
+}
+
+.ticket__info-wrapper::before {
+  content: "";
+  display: block;
+  height: 3px;
+  position: absolute;
+  background-image: url(../../assets/ticket-before.png);
+  top: -2px;
+  left: 0;
+  right: 0;
+}
+
+.ticket__info-wrapper::after {
+  content: "";
+  display: block;
+  height: 3px;
+  position: absolute;
+  background-image: url(../../assets/ticket-after.png);
+  bottom: -2px;
+  left: 0;
+  right: 0;
+}
+
+.ticket__info {
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.ticket__info-text:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.ticket__info-bold {
+  font-weight: 700;
+}
+
+.ticket__button {
+  display: block;
+  padding: 0 53px;
+  min-height: 40px;
+  margin: 30px auto;
+}
+
+.ticket__hint {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.ticket__hint-text {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
+}
+
+.ticket__info-qr {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}

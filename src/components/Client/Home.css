@@ -1,0 +1,9 @@
+.bold-text {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.thin-text {
+  text-transform: uppercase;
+  font-weight: normal;
+}

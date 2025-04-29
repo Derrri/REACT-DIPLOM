@@ -1,0 +1,156 @@
+.hall {
+  width: 100%;
+  background: rgba(241, 235, 230, 0.95);
+  padding-bottom: 30px;
+}
+
+.buying__info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buying__info_movie {
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+
+.buying__info_start,
+.buying__info_time {
+  font-size: 14px;
+  margin-bottom: 7px;
+  line-height: 16px;
+}
+
+.buying__info_hall {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.buying__scheme {
+  background: #171d24;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buying__scheme_wrapper {
+  font-size: 0;
+  max-width: 284px;
+  padding-top: 30px;
+  background-image: url(../../../assets/image-wrapper.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.buying__scheme_row {
+  display: flex;
+  gap: 4px;
+}
+
+.buying__scheme_row:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.buying__scheme_chair,
+.buying__scheme_legend-chair {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.buying__scheme_chair:not(.chair_taken, .chair_disabled):hover {
+  box-shadow: 0px 0px 4px #ffffff;
+}
+
+.chair_standart {
+  background-color: #ffffff;
+  border: 1px #525252 solid;
+  cursor: pointer;
+}
+
+.chair_vip {
+  background-color: #f9953a;
+  border: 1px #525252 solid;
+  cursor: pointer;
+}
+
+.chair_taken {
+  border: 1px #525252 solid;
+}
+
+.chair_selected {
+  transform: scale(1.2);
+  background-color: #25c4ce;
+  border: 1px #525252 solid;
+  box-shadow: 0px 0px 4px #16a6af;
+  cursor: pointer;
+}
+
+.buying__scheme_legend {
+  padding-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buying__scheme_prices {
+  padding-right: 33px;
+}
+
+.buying__scheme_legend-text {
+  color: #ffffff;
+
+}
+
+.buying__scheme_legend-text:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.buying__scheme_legend-chair {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: default;
+}
+
+.button {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.12),
+    0px 3px 3px 0px rgba(0, 0, 0, 0.24);
+  background-color: #16a6af;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.buying__button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 0 57px;
+  min-height: 40px;
+}
+
+.buying__button_disabled {
+  background-color: #525252;
+  cursor: default;
+}
+
+.buying__button_disabled:hover {
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.12),
+    0px 3px 3px 0px rgba(0, 0, 0, 0.24);
+}
+
+.button:hover {
+  box-shadow: 0px 0px 3px 0px rgba(255, 255, 255, 0.12),
+    0px 3px 3px 0px rgba(255, 255, 255, 0.24);
+}
+
+.button:focus-visible {
+  outline: #757575 auto 1px;
+}
