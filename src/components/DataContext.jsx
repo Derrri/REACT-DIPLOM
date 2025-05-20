@@ -17,6 +17,9 @@ export const DataProvider = ({ children }) => {
   const ADDMOVIE_URL = `${BASE_URL}/film`;
   const ADDSEANCE_URL = `${BASE_URL}/seance`;
   const DELETEMOVIE_URL = `${BASE_URL}/film`;
+  const HALLOPENSTATUS_URL = `${BASE_URL}/open`;
+
+
 
   const fetchData = async () => {
     setLoading(true);
@@ -249,6 +252,29 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const toggleHallOpenStatus = (hallId, currentStatus) => {
+    const newStatus = currentStatus === 1 ? '0' : '1';
+
+    const params = new FormData();
+    params.set('hallOpen', newStatus);
+
+    return fetch(`${HALLOPENSTATUS_URL}/${hallId}`, {
+      method: 'POST',
+      body: params,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setHalls(prevHalls =>
+            prevHalls.map(hall =>
+              hall.id === hallId ? { ...hall, hall_open: parseInt(newStatus, 10) } : hall
+            )
+          );
+        }
+        return data;
+      });
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -269,6 +295,7 @@ export const DataProvider = ({ children }) => {
         setFilms,
         AddSeance,
         handleRemoveFilm,
+        toggleHallOpenStatus,
       }}
     >
       {children}

@@ -3,7 +3,8 @@ import HallList from "../HallList";
 import { DataContext } from "../../../DataContext";
 
 const OpenSales = () => {
-  const { halls, seances, fetchData } = useContext(DataContext);
+  const { halls, seances, toggleHallOpenStatus } =
+    useContext(DataContext);
   const [selectedHall, setSelectedHall] = useState(null);
   const [buttonText, setButtonText] = useState("");
   const [infoText, setInfoText] = useState("");
@@ -46,33 +47,20 @@ const OpenSales = () => {
   };
 
   const handleButtonClick = () => {
-    if (isButtonDisabled) {
+    if (isButtonDisabled || selectedHall === null) {
       return;
     }
 
-    if (selectedHall) {
-      const hall = halls.find((h) => h.id === selectedHall);
-      const params = new FormData();
-      params.set("hallOpen", hall.hall_open === 1 ? "0" : "1");
+    const hall = halls.find((h) => h.id === selectedHall);
+    if (!hall) return;
 
-      fetch(`https://shfe-diplom.neto-server.ru/open/${selectedHall}`, {
-        method: "POST",
-        body: params,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            hall.hall_open = hall.hall_open === 1 ? 0 : 1;
-            setButtonText(
-              hall.hall_open === 1
-                ? "Приостановить продажу билетов"
-                : "Открыть продажу билетов"
-            );
-            alert("Статус зала успешно изменен!");
-            fetchData();
-          }
-        });
-    }
+    toggleHallOpenStatus(selectedHall, hall.hall_open).then((data) => {
+      if (data.success) {
+        alert("Статус зала успешно изменен!");
+      } else {
+        alert("Ошибка при изменении статуса зала");
+      }
+    });
   };
 
   return (
