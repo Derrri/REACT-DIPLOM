@@ -18,7 +18,7 @@ const Ticket = () => {
     script.src = "./QRCreator.js";
     script.async = true;
     script.onload = () => {
-      console.log("js файл подгрузился");
+
 
       const qrcode1 = QRCreator(qrText, {
         mode: -1,
@@ -58,7 +58,6 @@ const Ticket = () => {
   Стоимость: ${totalCost}рублей
   ${customMessage}`;
 
-  console.log("Текст для QR-кода:", qrText);
 
   return (
     <main className="main">
