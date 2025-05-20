@@ -16,6 +16,7 @@ export const DataProvider = ({ children }) => {
   const PRICE_URL = `${BASE_URL}/price`;
   const ADDMOVIE_URL = `${BASE_URL}/film`;
   const ADDSEANCE_URL = `${BASE_URL}/seance`;
+  const DELETEMOVIE_URL = `${BASE_URL}/film`;
 
   const fetchData = async () => {
     setLoading(true);
@@ -121,17 +122,17 @@ export const DataProvider = ({ children }) => {
 
   const removeHall = async (hallId) => {
     try {
-        const response = await fetch(`${HALL_URL}/${hallId}`, {
-            method: "DELETE",
-        });
-        if (!response.ok) {
-            throw new Error("Ошибка при удалении зала");
-        }
-        setHalls((prevHalls) => prevHalls.filter((hall) => hall.id !== hallId));
+      const response = await fetch(`${HALL_URL}/${hallId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Ошибка при удалении зала");
+      }
+      setHalls((prevHalls) => prevHalls.filter((hall) => hall.id !== hallId));
     } catch (error) {
-        console.error("Ошибка при удалении зала:", error);
+      console.error("Ошибка при удалении зала:", error);
     }
-};
+  };
 
   const saveHallConfigAdmin = async (hallId, rowCount, placeCount, config) => {
     const params = new FormData();
@@ -229,6 +230,25 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const handleRemoveFilm = async (filmId) => {
+    try {
+      const response = await fetch(`${DELETEMOVIE_URL}/${filmId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setFilms((prevFilms) => prevFilms.filter((film) => film.id !== filmId));
+        await fetchData();
+      } else {
+        const errorData = await response.json();
+        console.error("Ошибка удаления фильма:", errorData.message);
+        alert("Не удалось удалить фильм. Попробуйте позже.");
+      }
+    } catch (error) {
+      console.error("Ошибка при удалении фильма:", error);
+      alert("Произошла ошибка при удалении фильма.");
+    }
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -248,6 +268,7 @@ export const DataProvider = ({ children }) => {
         addMovie,
         setFilms,
         AddSeance,
+        handleRemoveFilm,
       }}
     >
       {children}

@@ -6,7 +6,7 @@ import close from "../../../../assets/close.png";
 import SaveResetButtons from "../SaveResetButtons";
 
 const MovieSeances = () => {
-  const { halls, films, seances, setFilms, AddSeance, fetchData } =
+  const { halls, films, seances, setFilms, AddSeance, fetchData, handleRemoveFilm } =
     useContext(DataContext);
   const navigate = useNavigate();
   const [localSeances, setLocalSeances] = useState([]);
@@ -30,18 +30,6 @@ const MovieSeances = () => {
       setIsModified(true);
     }
   }, []);
-
-  const handleRemoveFilm = async (filmId) => {
-    try {
-      await fetch(`https://shfe-diplom.neto-server.ru/film/${filmId}`, {
-        method: "DELETE",
-      });
-      setFilms((prevFilms) => prevFilms.filter((film) => film.id !== filmId));
-      fetchData();
-    } catch (error) {
-      console.error("Ошибка при удалении фильма:", error);
-    }
-  };
 
   const getCycledBackgroundClass = (index) => {
     const cycleNumber = (index % 5) + 1; // Цикл 1-5
