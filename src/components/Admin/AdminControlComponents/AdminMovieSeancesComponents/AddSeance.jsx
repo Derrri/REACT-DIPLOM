@@ -7,7 +7,6 @@ const AddSeance = () => {
   const location = useLocation();
   const { films, halls, seances } = location.state || {};
 
-
   const selectedFilmIdFromState =
     location.state?.selectedFilmId || films[0]?.id;
   const selectedHallIdFromState =
@@ -24,7 +23,6 @@ const AddSeance = () => {
   if (!films || !halls) {
     return <div>Ошибка: данные о фильмах или залах отсутствуют.</div>;
   }
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -90,7 +88,8 @@ const AddSeance = () => {
         seance.seance_time,
         seanceFilmDuration
       );
-      return start < seanceEndTime && seance.seance_time < end;
+      const noOverlap = end < seance.seance_time || start > seanceEndTime;
+      return !noOverlap;
     });
   };
 
