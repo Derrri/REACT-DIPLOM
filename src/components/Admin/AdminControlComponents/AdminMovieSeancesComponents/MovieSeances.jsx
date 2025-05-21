@@ -6,8 +6,16 @@ import close from "../../../../assets/close.png";
 import SaveResetButtons from "../SaveResetButtons";
 
 const MovieSeances = () => {
-  const { halls, films, seances, setFilms, AddSeance, fetchData, handleRemoveFilm } =
-    useContext(DataContext);
+  const {
+    halls,
+    films,
+    seances,
+    setFilms,
+    AddSeance,
+    fetchData,
+    handleRemoveFilm,
+    deleteSeanceById,
+  } = useContext(DataContext);
   const navigate = useNavigate();
   const [localSeances, setLocalSeances] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -111,17 +119,15 @@ const MovieSeances = () => {
 
   const handleConfirmDelete = async () => {
     try {
-      await fetch(
-        `https://shfe-diplom.neto-server.ru/seance/${selectedSeanceId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      await deleteSeanceById(selectedSeanceId);
       setLocalSeances((prevSeances) =>
         prevSeances.filter((seance) => seance.id !== selectedSeanceId)
       );
     } catch (error) {
       console.error("Ошибка при удалении сеанса:", error);
+      alert(
+        "Произошла ошибка при удалении сеанса. Пожалуйста, попробуйте еще раз."
+      );
     } finally {
       setShowPopup(false);
       setActiveHallId(null);

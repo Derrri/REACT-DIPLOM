@@ -18,8 +18,7 @@ export const DataProvider = ({ children }) => {
   const ADDSEANCE_URL = `${BASE_URL}/seance`;
   const DELETEMOVIE_URL = `${BASE_URL}/film`;
   const HALLOPENSTATUS_URL = `${BASE_URL}/open`;
-
-
+  const DELETESEANCE_URL = `${BASE_URL}/seance`;
 
   const fetchData = async () => {
     setLoading(true);
@@ -253,26 +252,39 @@ export const DataProvider = ({ children }) => {
   };
 
   const toggleHallOpenStatus = (hallId, currentStatus) => {
-    const newStatus = currentStatus === 1 ? '0' : '1';
+    const newStatus = currentStatus === 1 ? "0" : "1";
 
     const params = new FormData();
-    params.set('hallOpen', newStatus);
+    params.set("hallOpen", newStatus);
 
     return fetch(`${HALLOPENSTATUS_URL}/${hallId}`, {
-      method: 'POST',
+      method: "POST",
       body: params,
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          setHalls(prevHalls =>
-            prevHalls.map(hall =>
-              hall.id === hallId ? { ...hall, hall_open: parseInt(newStatus, 10) } : hall
+          setHalls((prevHalls) =>
+            prevHalls.map((hall) =>
+              hall.id === hallId
+                ? { ...hall, hall_open: parseInt(newStatus, 10) }
+                : hall
             )
           );
         }
         return data;
       });
+  };
+
+  const deleteSeanceById = async (seanceId) => {
+    try {
+      await fetch(`${DELETESEANCE_URL}/${seanceId}`, {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.error("Ошибка при удалении сеанса:", error);
+      throw error;
+    }
   };
 
   return (
@@ -296,6 +308,7 @@ export const DataProvider = ({ children }) => {
         AddSeance,
         handleRemoveFilm,
         toggleHallOpenStatus,
+        deleteSeanceById,
       }}
     >
       {children}
